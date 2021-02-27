@@ -30,6 +30,13 @@ class DashboardComposer
         $view->with('_currentUrl', $_currentUrl);
         $view->with('currentUrl', $currentUrl);
         //$view->with('userRole', $userRole);
+        $view->with('businessList', DbUtil::getBusinessList(''));
+        $view->with('projectList', DbUtil::getProjectListByBusiness(''));
+        $view->with('documentList', DbUtil::getDocumentListByBusinessAndProject());
+        $view->with('totalProjectCount', DbUtil::getTotalProjectCount());
+        $view->with('totalDocumentCount', DbUtil::getTotalDOcumentCount());
+        //$view->with('taskLogList', DbUtil::getTaskLogsByDocument());
+        $view->with('notificationByDoc', NotifyUtil::getNotificationByDocument());
         if($notification=DbUtil::getDevAlert()!='')$view->with('notification', $notification);
 
         if(request()->get('lang')){

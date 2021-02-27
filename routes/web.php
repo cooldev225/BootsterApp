@@ -77,3 +77,4 @@ Route::group(['middleware' => ['login']], function () {
     Route::post('/developer', 'Util\\DbUtil@developer');
     Route::post('/notify/read', 'Util\\NotifyUtil@read');
 });
+Route::get('/arrayToJson', 'Util\\FileUtil@arrayToJson');

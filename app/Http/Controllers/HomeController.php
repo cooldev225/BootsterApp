@@ -16,7 +16,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        //$this->middleware('auth');
+        $this->middleware('auth');
     }
 
     /**
@@ -26,8 +26,24 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
+        $business_id = $request->input('a');
+        $project_id = $request->input('b');
         return view('frontend.home',[
-            
+            'business_id' => $business_id,
+            'project_id' => $project_id,
+            'parentGroupList'=>GroupUtil::getParentGroupList(),
+            'subGroupCount'=>GroupUtil::getSubGroupCount(),
+            'adStatesList' => DbUtil::getAdStatesList(),
+            'responsibleUsersList' => DbUtil::getResponsibleUsersList(),
         ]);
+    }
+    public function getDocumentChartData(){
+        header('Content-Type: application/json');
+        exit(json_encode(DocumentUtil::getDocumentChartData()));
+    }
+    public function attachRemoveFile(Request $request){
+        DbUtil::attachRemoveFile($request->input('id'));
+        $res=array('msg'=>'ok');
+		exit(json_encode($res));
     }
 }

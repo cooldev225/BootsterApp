@@ -48,53 +48,40 @@ class AuthController extends Controller
             $request->validate([
                 'email'     => 'required',
                 'password'  => 'required'
-                //'password'  => 'required|min:6'
             ])
             :
             $request->validate([
                 'username'     => 'required',
                 'password'  => 'required'
-                //'password'  => 'required|min:6'
             ])
         ;
 
         if (Auth::attempt($validator))
         {
             if(auth::check()){
-                $user = Auth::user();
                 $login = Session::select()->where('user_id', Auth::id())->get();
-                 // dd($login);
-                    if (count($login) > 0)
-                    {
-                        //$user->logout=true;
-                        //$user->save();
-
-                        Session::select()->where('user_id',Auth::id())->delete();
-                        //Auth::logoutUsingId(Auth::id());
-                        Auth::logout();
+                if (count($login) > 0)
+                {
+                    if($this->get_client_ip()==$login[0]['ip_address']){
+                        $login[0]->delete();
+                    }else{
+                        Session::select()->where('user_id',Auth::id())->delete();//Auth::logoutUsingId(Auth::id());
+                        Auth::logout();                        
+                        $user = Auth::user();
                         $user->logout = true;
                         $user->save();
-                        //return $this->login($request);
-                        return redirect()->intended('login');
-
-                        //if($this->get_client_ip()==$login[0]['ip_address']){
-                        //    $login[0]->delete();
-                        //}else{
-                        //    Auth::logout();
-                        //    session()->flash('logout', "You are Logged in on other devices");
-                        //    //return redirect('login');
-                        //    return view('frontend.auth.login', ['page_title' => 'Login','error'=>"double_attempt"]);
-                        //}
+                        session()->flash('logout', "You are Logged in on other devices");
+                        return view('frontend.auth.login', ['page_title' => 'Login','error'=>"double_attempt"]);
                     }
-                    //Auth::loginUsingId(Auth::id());
-                    $session=new Session;
-                    $session->id=session()->getId();
-                    $session->user_id=Auth::id();
-                    $session->ip_address=$this->get_client_ip();
-                    $session->user_agent='';
-                    $session->payload='login';
-                    $session->last_activity=1;
-                    $session->save();
+                }
+                $session=new Session;
+                $session->id=session()->getId();
+                $session->user_id=Auth::id();
+                $session->ip_address=$this->get_client_ip();
+                $session->user_agent='';
+                $session->payload='login';
+                $session->last_activity=1;
+                $session->save();
             }
             $request->session()->regenerate();
             return redirect()->intended('home');
@@ -136,7 +123,7 @@ class AuthController extends Controller
             $mailData->fromEmail = config('mail.from.address');
             $mailData->userName = $user->userName;
             $mailData->toEmail = $email;
-            $mailData->subject = 'Auras - Password Reset';
+            $mailData->subject = 'Witbooster - Password Reset';
             $mailData->mailType = 'RESET_LINK_TYPE';
             $mailData->content = $newPassword;
 

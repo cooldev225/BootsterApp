@@ -12,7 +12,7 @@
 	        <div class="d-flex flex-column-fluid flex-column justify-content-between py-9 px-7 py-lg-13 px-lg-35">
 	            <!--begin::Logo-->
 	            <a href="#" class="text-center pt-2">
-	                <img src="images/logo.png" class="max-h-55px" alt=""/>
+	                <img src="images/logo.png" class="max-w-135px" alt=""/>
 	            </a>
 	            <!--end::Logo-->
 
@@ -188,4 +188,5 @@
 <script src="frontend/js/lang/{{app()->getLocale()}}.js"></script>
 <script src="metronic/js/pages/custom/login/login-general.js"></script>
 <!--end::Page Scripts-->
+
 @endsection

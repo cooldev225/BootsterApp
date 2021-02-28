@@ -51,10 +51,10 @@
 }
 
 .header {
-    background-color: #95e42d;
+    background-color: #ffffff;
 }
 .header .header-menu .menu-nav > .menu-item.menu-item-here > .menu-link, .header .header-menu .menu-nav > .menu-item.menu-item-active > .menu-link {
-    background-color: #007002;
+    background-color: #ffffff;
 }
 .header .header-menu .menu-nav > .menu-item > .menu-link .menu-text {
     color: #135615;

@@ -20,8 +20,8 @@ return [
     'cancel'=>'Cancel',
     'forgotten'=>'Forgotten password ?',
     'enteremail'=>'Enter your email to reset your password',
-    'right-panel-text'=>"User Experience & Interface Design, Product Strategy, Web Application SaaS Solutions",
-    'right-panel-title'=>"Auras Custmer Portal",
+    'right-panel-text'=>"",//User Experience & Interface Design, Product Strategy, Web Application SaaS Solutions",
+    'right-panel-title'=>"Witbooster Admin Panel",
 
 
 

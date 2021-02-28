@@ -4,118 +4,23 @@
 <!--begin::Subheader-->
 <div class="subheader py-2 py-lg-4  subheader-solid " id="kt_subheader">
     <div class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
-        <!--begin::Info-->
         <div class="d-flex align-items-center flex-wrap mr-2">
-
-            <!--begin::Page Title-->
-        <h5 class="text-dark font-weight-bold mt-2 mb-2"><a href="home" class="btn btn-clean font-weight-bold" style="color:#000;font-size:15px;">{{trans('layout.dashboard')}}</a></h5>
-            <!--end::Page Title-->
-            @if(isset($business_id)&&$business_id>0)
-            @php
-            foreach($businessList as $business)if($business['id']==$business_id){
-            @endphp
-            <div class="subheader-separator subheader-separator-ver" style="background-color:#655d5d;font-size:15px;"></div>
-            <h5 class="text-dark font-weight-bold mt-2 mb-2"><a href="home?a={{$business_id}}" class="btn btn-clean font-weight-bold mr-1" style="color:#000;font-size:15px;">{{$business['first_name']}}</a></h5>
-            @php
-            break;
-            }
-            @endphp
-            @endif
-            <!--begin::Actions-->
-
-
-            <span class="text-muted font-weight-bold mr-4">{{trans('layout.business')}}s: {{count($businessList)}}</span>
+            <h5 class="text-dark font-weight-bold mt-2 mb-2"><a href="home" class="btn btn-clean font-weight-bold" style="color:#000;font-size:15px;">{{trans('dashboard.dashboard')}}</a></h5>
+            <div class="subheader-separator subheader-separator-ver mr-4" style="background-color:#655d5d;font-size:15px;"></div>
+        
+            <span class="text-muted font-weight-bold mr-4">TOTAL USERS: 0</span>
             <span class="text-muted font-weight-bold mr-4"></span>
-            @if(isset($business_id)&&$business_id>0)
-            <span class="text-muted font-weight-bold mr-4">{{trans('layout.project')}}s: {{count($projectList[$business_id])}}</span>
+            <span class="text-muted font-weight-bold mr-4">USED BOOSTS: 0</span>
             <span class="text-muted font-weight-bold mr-4"></span>
-            @else
-            <span class="text-muted font-weight-bold mr-4">{{trans('layout.project')}}s: {{$totalProjectCount}}</span>
+            <span class="text-muted font-weight-bold mr-4">PACKS BOUGHT OF TODAY/TOTAL: 0/0</span>
             <span class="text-muted font-weight-bold mr-4"></span>
-            @endif
-            @if(isset($business_id)&&$business_id>0&&isset($project_id)&&$project_id>0)
-            <span class="text-muted font-weight-bold mr-4">{{trans('layout.document')}}s: {{count($documentList[$business_id][$project_id])}}</span>
-            @else
-            <span class="text-muted font-weight-bold mr-4">{{trans('layout.document')}}s: {{$totalDocumentCount}}</span>
-            @endif
-            <!--end::Actions-->
+            <span class="text-muted font-weight-bold mr-4">REVENUE OF TODAY/TOTAL: 0</span>
+            <span class="text-muted font-weight-bold mr-4"></span>
         </div>
         <!--end::Info-->
 
         <!--begin::Toolbar-->
         <div class="d-flex align-items-center">
-            @if(!isset($business_id)&&!isset($project_id))
-            @for($i=0;$i<count($businessList);$i++)
-            @if($i==2)
-            <div class="dropdown dropdown-inline" data-toggle="tooltip" title="" data-placement="left" data-original-title="{{trans('layout.quickactions')}}">
-                <a href="#" class="btn btn-sm btn-clean btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="svg-icon svg-icon-success svg-icon-lg"><!--begin::Svg Icon | path:assets/media/svg/icons/Files/File-plus.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                            <polygon points="0 0 24 0 24 24 0 24"></polygon>
-                            <path d="M5.85714286,2 L13.7364114,2 C14.0910962,2 14.4343066,2.12568431 14.7051108,2.35473959 L19.4686994,6.3839416 C19.8056532,6.66894833 20,7.08787823 20,7.52920201 L20,20.0833333 C20,21.8738751 19.9795521,22 18.1428571,22 L5.85714286,22 C4.02044787,22 4,21.8738751 4,20.0833333 L4,3.91666667 C4,2.12612489 4.02044787,2 5.85714286,2 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"></path>
-                            <path d="M11,14 L9,14 C8.44771525,14 8,13.5522847 8,13 C8,12.4477153 8.44771525,12 9,12 L11,12 L11,10 C11,9.44771525 11.4477153,9 12,9 C12.5522847,9 13,9.44771525 13,10 L13,12 L15,12 C15.5522847,12 16,12.4477153 16,13 C16,13.5522847 15.5522847,14 15,14 L13,14 L13,16 C13,16.5522847 12.5522847,17 12,17 C11.4477153,17 11,16.5522847 11,16 L11,14 Z" fill="#000000"></path>
-                        </g>
-                    </svg><!--end::Svg Icon--></span>
-                </a>
-                <div class="dropdown-menu p-0 m-0 dropdown-menu-md dropdown-menu-right py-3">
-                    <!--begin::Navigation-->
-                    <ul class="navi navi-hover py-5">
-            @endif
-            @if($i<2)
-            <a href="project?a={{$businessList[$i]['id']}}" class="btn btn-sm btn-light font-weight-bold mr-2" data-toggle="tooltip" title="" data-placement="left" data-original-title="Select {{$businessList[$i]['first_name']}} business">
-            {{$businessList[$i]['first_name']}}
-            </a>
-            @else
-                        <li class="navi-item">
-                            <a href="project?a={{$businessList[$i]['id']}}" class="navi-link">
-                                <span class="navi-text">{{$businessList[$i]['first_name']}}</span>
-                            </a>
-                        </li>
-            @endif
-            @if($i>1&&$i==count($businessList)-1)
-                    </ul>
-                    <!--end::Navigation-->
-                </div>
-            </div>
-            @endif
-            @endfor
-            @endif
-            @if(isset($business_id)&&!isset($project_id))
-            @for($i=0;$i<count($projectList[$business_id]);$i++)
-            @if($i==2)
-            <div class="dropdown dropdown-inline" data-toggle="tooltip" title="" data-placement="left" data-original-title="{{trans('layout.quickactions')}}">
-                <a href="#" class="btn btn-sm btn-clean btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="svg-icon svg-icon-success svg-icon-lg"><!--begin::Svg Icon | path:assets/media/svg/icons/Files/File-plus.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                            <polygon points="0 0 24 0 24 24 0 24"></polygon>
-                            <path d="M5.85714286,2 L13.7364114,2 C14.0910962,2 14.4343066,2.12568431 14.7051108,2.35473959 L19.4686994,6.3839416 C19.8056532,6.66894833 20,7.08787823 20,7.52920201 L20,20.0833333 C20,21.8738751 19.9795521,22 18.1428571,22 L5.85714286,22 C4.02044787,22 4,21.8738751 4,20.0833333 L4,3.91666667 C4,2.12612489 4.02044787,2 5.85714286,2 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"></path>
-                            <path d="M11,14 L9,14 C8.44771525,14 8,13.5522847 8,13 C8,12.4477153 8.44771525,12 9,12 L11,12 L11,10 C11,9.44771525 11.4477153,9 12,9 C12.5522847,9 13,9.44771525 13,10 L13,12 L15,12 C15.5522847,12 16,12.4477153 16,13 C16,13.5522847 15.5522847,14 15,14 L13,14 L13,16 C13,16.5522847 12.5522847,17 12,17 C11.4477153,17 11,16.5522847 11,16 L11,14 Z" fill="#000000"></path>
-                        </g>
-                    </svg><!--end::Svg Icon--></span>
-                </a>
-                <div class="dropdown-menu p-0 m-0 dropdown-menu-md dropdown-menu-right py-3">
-                    <!--begin::Navigation-->
-                    <ul class="navi navi-hover py-5">
-            @endif
-            @if($i<2)
-            <a href="project?a={{$business_id}}&b={{$projectList[$business_id][$i]['id']}}" class="btn btn-sm btn-light font-weight-bold mr-2" data-toggle="tooltip" title="" data-placement="left" data-original-title="Select {{$projectList[$business_id][$i]['name']}} project">
-                {{$projectList[$business_id][$i]['name']}}
-            </a>
-            @else
-                        <li class="navi-item">
-                            <a href="project?a={{$business_id}}&b={{$projectList[$business_id][$i]['id']}}" class="navi-link">
-                                <span class="navi-text">{{$projectList[$business_id][$i]['name']}}}</span>
-                            </a>
-                        </li>
-            @endif
-            @if($i>1&&$i==count($projectList[$business_id])-1)
-                    </ul>
-                    <!--end::Navigation-->
-                </div>
-            </div>
-            @endif
-            @endfor
-            @endif
         </div>
         <!--end::Toolbar-->
     </div>
@@ -144,30 +49,184 @@
     	<?php }?>
         <!--end::Notice-->
         <!--begin::Dashboard-->
+        <div class="row">
+        <div class="col-xl-2">
+                <!--begin::Stats Widget 26-->
+                <div class="card card-custom bgi-no-repeat card-stretch gutter-b" style="background-position: right top; background-size: 30% auto; background-image: url(metronic/media/svg/shapes/abstract-1.svg)">
+                    <!--begin::ody-->
+                    <div class="card-body">
+                        <span class="svg-icon svg-icon-2x svg-icon-danger"><!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Group.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <polygon points="0 0 24 0 24 24 0 24"/>
+                                <path d="M18,14 C16.3431458,14 15,12.6568542 15,11 C15,9.34314575 16.3431458,8 18,8 C19.6568542,8 21,9.34314575 21,11 C21,12.6568542 19.6568542,14 18,14 Z M9,11 C6.790861,11 5,9.209139 5,7 C5,4.790861 6.790861,3 9,3 C11.209139,3 13,4.790861 13,7 C13,9.209139 11.209139,11 9,11 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"/>
+                                <path d="M17.6011961,15.0006174 C21.0077043,15.0378534 23.7891749,16.7601418 23.9984937,20.4 C24.0069246,20.5466056 23.9984937,21 23.4559499,21 L19.6,21 C19.6,18.7490654 18.8562935,16.6718327 17.6011961,15.0006174 Z M0.00065168429,20.1992055 C0.388258525,15.4265159 4.26191235,13 8.98334134,13 C13.7712164,13 17.7048837,15.2931929 17.9979143,20.2 C18.0095879,20.3954741 17.9979143,21 17.2466999,21 C13.541124,21 8.03472472,21 0.727502227,21 C0.476712155,21 -0.0204617505,20.45918 0.00065168429,20.1992055 Z" fill="#000000" fill-rule="nonzero"/>
+                            </g>
+                            </svg><!--end::Svg Icon-->
+                        </span>
+                        <span class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-6 d-block">0</span>
+                        <span class="font-weight-bold text-muted font-size-sm">Total of users</span>
+                    </div>
+                    <!--end::Body-->
+                </div>
+                <!--end::Stats Widget 26-->
+            </div>
+            <div class="col-xl-2">
+                <!--begin::Stats Widget 26-->
+                <div class="card card-custom bgi-no-repeat card-stretch gutter-b" style="background-position: right top; background-size: 30% auto; background-image: url(metronic/media/svg/shapes/abstract-1.svg)">
+                    <!--begin::ody-->
+                    <div class="card-body">
+                    <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Shopping\Bag2.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <rect x="0" y="0" width="24" height="24"/>
+                                                    <path d="M5.94290508,4 L18.0570949,4 C18.5865712,4 19.0242774,4.41271535 19.0553693,4.94127798 L19.8754445,18.882556 C19.940307,19.9852194 19.0990032,20.9316862 17.9963398,20.9965487 C17.957234,20.9988491 17.9180691,21 17.8788957,21 L6.12110428,21 C5.01653478,21 4.12110428,20.1045695 4.12110428,19 C4.12110428,18.9608266 4.12225519,18.9216617 4.12455553,18.882556 L4.94463071,4.94127798 C4.97572263,4.41271535 5.41342877,4 5.94290508,4 Z" fill="#000000" opacity="0.3"/>
+                                                    <path d="M7,7 L9,7 C9,8.65685425 10.3431458,10 12,10 C13.6568542,10 15,8.65685425 15,7 L17,7 C17,9.76142375 14.7614237,12 12,12 C9.23857625,12 7,9.76142375 7,7 Z" fill="#000000"/>
+                                                </g>
+                                            </svg><!--end::Svg Icon--></span>
+                        <span class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-6 d-block">0</span>
+                        <span class="font-weight-bold text-muted font-size-sm">Today boosts used</span>
+                    </div>
+                    <!--end::Body-->
+                </div>
+                <!--end::Stats Widget 26-->
+            </div>
+            <div class="col-xl-2">
+                <!--begin::Stats Widget 26-->
+                <div class="card card-custom bg-info card-stretch gutter-b" >
+                    <!--begin::ody-->
+                    <div class="card-body">
+                    <span class="svg-icon svg-icon-white svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Shopping\Cart1.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <rect x="0" y="0" width="24" height="24"/>
+                                                    <path d="M18.1446364,11.84388 L17.4471627,16.0287218 C17.4463569,16.0335568 17.4455155,16.0383857 17.4446387,16.0432083 C17.345843,16.5865846 16.8252597,16.9469884 16.2818833,16.8481927 L4.91303792,14.7811299 C4.53842737,14.7130189 4.23500006,14.4380834 4.13039941,14.0719812 L2.30560137,7.68518803 C2.28007524,7.59584656 2.26712532,7.50338343 2.26712532,7.4104669 C2.26712532,6.85818215 2.71484057,6.4104669 3.26712532,6.4104669 L16.9929851,6.4104669 L17.606173,3.78251876 C17.7307772,3.24850086 18.2068633,2.87071314 18.7552257,2.87071314 L20.8200821,2.87071314 C21.4717328,2.87071314 22,3.39898039 22,4.05063106 C22,4.70228173 21.4717328,5.23054898 20.8200821,5.23054898 L19.6915238,5.23054898 L18.1446364,11.84388 Z" fill="#000000" opacity="0.3"/>
+                                                    <path d="M6.5,21 C5.67157288,21 5,20.3284271 5,19.5 C5,18.6715729 5.67157288,18 6.5,18 C7.32842712,18 8,18.6715729 8,19.5 C8,20.3284271 7.32842712,21 6.5,21 Z M15.5,21 C14.6715729,21 14,20.3284271 14,19.5 C14,18.6715729 14.6715729,18 15.5,18 C16.3284271,18 17,18.6715729 17,19.5 C17,20.3284271 16.3284271,21 15.5,21 Z" fill="#000000"/>
+                                                </g>
+                                            </svg><!--end::Svg Icon--></span>
+                        <span class="card-title font-weight-bolder text-white font-size-h2 mb-0 mt-6 d-block">0</span>
+                        <span class="font-weight-bold text-white font-size-sm">Today packs bought</span>
+                    </div>
+                    <!--end::Body-->
+                </div>
+                <!--end::Stats Widget 26-->
+            </div>
+            <div class="col-xl-2">
+                <!--begin::Stats Widget 26-->
+                <div class="card card-custom bg-info card-stretch gutter-b" >
+                    <!--begin::ody-->
+                    <div class="card-body">
+                    <span class="svg-icon svg-icon-white svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Shopping\Cart1.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <rect x="0" y="0" width="24" height="24"/>
+                                                    <path d="M18.1446364,11.84388 L17.4471627,16.0287218 C17.4463569,16.0335568 17.4455155,16.0383857 17.4446387,16.0432083 C17.345843,16.5865846 16.8252597,16.9469884 16.2818833,16.8481927 L4.91303792,14.7811299 C4.53842737,14.7130189 4.23500006,14.4380834 4.13039941,14.0719812 L2.30560137,7.68518803 C2.28007524,7.59584656 2.26712532,7.50338343 2.26712532,7.4104669 C2.26712532,6.85818215 2.71484057,6.4104669 3.26712532,6.4104669 L16.9929851,6.4104669 L17.606173,3.78251876 C17.7307772,3.24850086 18.2068633,2.87071314 18.7552257,2.87071314 L20.8200821,2.87071314 C21.4717328,2.87071314 22,3.39898039 22,4.05063106 C22,4.70228173 21.4717328,5.23054898 20.8200821,5.23054898 L19.6915238,5.23054898 L18.1446364,11.84388 Z" fill="#000000" opacity="0.3"/>
+                                                    <path d="M6.5,21 C5.67157288,21 5,20.3284271 5,19.5 C5,18.6715729 5.67157288,18 6.5,18 C7.32842712,18 8,18.6715729 8,19.5 C8,20.3284271 7.32842712,21 6.5,21 Z M15.5,21 C14.6715729,21 14,20.3284271 14,19.5 C14,18.6715729 14.6715729,18 15.5,18 C16.3284271,18 17,18.6715729 17,19.5 C17,20.3284271 16.3284271,21 15.5,21 Z" fill="#000000"/>
+                                                </g>
+                                            </svg><!--end::Svg Icon--></span>
+                        <span class="card-title font-weight-bolder text-white font-size-h2 mb-0 mt-6 d-block">0</span>
+                        <span class="font-weight-bold text-white font-size-sm">Total of packs bought</span>
+                    </div>
+                    <!--end::Body-->
+                </div>
+                <!--end::Stats Widget 26-->
+            </div>
+            <div class="col-xl-2">
+                <!--begin::Stats Widget 26-->
+                <div class="card card-custom bg-danger card-stretch gutter-b" >
+                    <!--begin::ody-->
+                    <div class="card-body">
+                        <span class="svg-icon svg-icon-white svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Shopping\Cart3.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <rect x="0" y="0" width="24" height="24"/>
+                                <path d="M12,4.56204994 L7.76822128,9.6401844 C7.4146572,10.0644613 6.7840925,10.1217854 6.3598156,9.76822128 C5.9355387,9.4146572 5.87821464,8.7840925 6.23177872,8.3598156 L11.2317787,2.3598156 C11.6315738,1.88006147 12.3684262,1.88006147 12.7682213,2.3598156 L17.7682213,8.3598156 C18.1217854,8.7840925 18.0644613,9.4146572 17.6401844,9.76822128 C17.2159075,10.1217854 16.5853428,10.0644613 16.2317787,9.6401844 L12,4.56204994 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"/>
+                                <path d="M3.5,9 L20.5,9 C21.0522847,9 21.5,9.44771525 21.5,10 C21.5,10.132026 21.4738562,10.2627452 21.4230769,10.3846154 L17.7692308,19.1538462 C17.3034221,20.271787 16.2111026,21 15,21 L9,21 C7.78889745,21 6.6965779,20.271787 6.23076923,19.1538462 L2.57692308,10.3846154 C2.36450587,9.87481408 2.60558331,9.28934029 3.11538462,9.07692308 C3.23725479,9.02614384 3.36797398,9 3.5,9 Z M12,17 C13.1045695,17 14,16.1045695 14,15 C14,13.8954305 13.1045695,13 12,13 C10.8954305,13 10,13.8954305 10,15 C10,16.1045695 10.8954305,17 12,17 Z" fill="#000000"/>
+                            </g>
+                        </svg><!--end::Svg Icon--></span>
+                        <span class="card-title font-weight-bolder text-white font-size-h2 mb-0 mt-6 d-block">$0</span>
+                        <span class="font-weight-bold text-white  font-size-sm">Today revenue</span>
+                    </div>
+                    <!--end::Body-->
+                </div>
+                <!--end::Stats Widget 26-->
+            </div>
+            <div class="col-xl-2">
+                <!--begin::Stats Widget 26-->
+                <div class="card card-custom bg-danger card-stretch gutter-b">
+                    <!--begin::ody-->
+                    <div class="card-body">
+                        <span class="svg-icon svg-icon-white svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Shopping\Cart3.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <rect x="0" y="0" width="24" height="24"/>
+                                <path d="M12,4.56204994 L7.76822128,9.6401844 C7.4146572,10.0644613 6.7840925,10.1217854 6.3598156,9.76822128 C5.9355387,9.4146572 5.87821464,8.7840925 6.23177872,8.3598156 L11.2317787,2.3598156 C11.6315738,1.88006147 12.3684262,1.88006147 12.7682213,2.3598156 L17.7682213,8.3598156 C18.1217854,8.7840925 18.0644613,9.4146572 17.6401844,9.76822128 C17.2159075,10.1217854 16.5853428,10.0644613 16.2317787,9.6401844 L12,4.56204994 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"/>
+                                <path d="M3.5,9 L20.5,9 C21.0522847,9 21.5,9.44771525 21.5,10 C21.5,10.132026 21.4738562,10.2627452 21.4230769,10.3846154 L17.7692308,19.1538462 C17.3034221,20.271787 16.2111026,21 15,21 L9,21 C7.78889745,21 6.6965779,20.271787 6.23076923,19.1538462 L2.57692308,10.3846154 C2.36450587,9.87481408 2.60558331,9.28934029 3.11538462,9.07692308 C3.23725479,9.02614384 3.36797398,9 3.5,9 Z M12,17 C13.1045695,17 14,16.1045695 14,15 C14,13.8954305 13.1045695,13 12,13 C10.8954305,13 10,13.8954305 10,15 C10,16.1045695 10.8954305,17 12,17 Z" fill="#000000"/>
+                            </g>
+                        </svg><!--end::Svg Icon--></span>
+                        <span class="card-title font-weight-bolder text-white font-size-h2 mb-0 mt-6 d-block">$0</span>
+                        <span class="font-weight-bold text-white font-size-sm">Total of revenue</span>
+                    </div>
+                    <!--end::Body-->
+                </div>
+                <!--end::Stats Widget 26-->
+            </div>
+        </div>
         <!--begin::Row-->
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-6">
                 <!--begin::Card-->
                 <div class="card card-custom gutter-b">
+                    <!--begin::Header-->
+                    <div class="card-header h-auto">
+                        <!--begin::Title-->
+                        <div class="card-title py-5">
+                            <h3 class="card-label">
+                                Packs Bought By Year($)
+                            </h3>
+                        </div>
+                        <!--end::Title-->
+                    </div>
+                    <!--end::Header-->
                     <div class="card-body">
-                        <div class="row">
-                        <div class="col-lg-6">
-                            <!--begin::Chart-->
-                            <div id="document_chart"></div>
-                            <!--end::Chart-->
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="datatable datatable-bordered datatable-head-custom kt_datatable_class" name="kt_datatable_document" id="kt_datatable_document"></div>
-                        </div>
-                        </div>
+                        <!--begin::Chart-->
+                        <div id="chart_1"></div>
+                        <!--end::Chart-->
                     </div>
                 </div>
                 <!--end::Card-->
             </div>
-            <!--begin:epg widget-->
-
-            <!--end:epg widget-->
-		</div>
+            <div class="col-lg-6">
+                <!--begin::Card-->
+                <div class="card card-custom gutter-b">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <h3 class="card-label">
+                                Boost Used By Year(k)
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <!--begin::Chart-->
+                        <div id="chart_2"></div>
+                        <!--end::Chart-->
+                    </div>
+                </div>
+                <!--end::Card-->
+            </div>
+            <div class="col-lg-12">
+                <!--begin::Card-->
+                <div class="card card-custom gutter-b">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <h3 class="card-label">
+                                Active Users by Month
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <!--begin::Chart-->
+                        <div id="chart_3"></div>
+                        <!--end::Chart-->
+                    </div>
+                </div>
+                <!--end::Card-->
+            </div>
+        </div>
         <!--end::Dashboard-->
     </div>
     <!--end::Container-->

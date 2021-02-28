@@ -15,55 +15,34 @@ var lang = {
     conf_try: "Please, try again!",
     err_dblemail: "Email you typed is already exist.",
     err_dblaccess: "You are Logged in on other devices.",
-    //home page
-    business: 'Business',
-    group: 'Group',
-    project: 'Project',
-    process: 'Process',
-    datetofinish: 'Date to finish',
-    //project page
-    dropattach: '<strong>Drop attach files here or click to upload. </strong></br> (File will be safe.)',
-    //group page
-    name: 'Name',
-    firstalert: 'First Alert',
-    secondalert: 'Second Alert',
-    againalert: 'Again Alert',
-    documents: 'Documents',
-    createdby: 'Created By',
-    createddate: 'Created Date',
-    actions: 'Actions',
-    all: 'ALL',
-    //document page
-    title: 'Title',
-    duedate: 'Due date',
-    subgroup: 'Sub Group',
-    status: 'Status',
-    opening: 'Opening',
-    developing: 'Developing',
-    waitingforclient: 'Waiting for client',
-    onfiled: 'On filed',
-    waitingorgan: 'Waiting organ',
-    description: 'Description',
-    createfile: 'Create file',
-    user: 'User',
-    location: 'Location',
-    finishedat: 'Finsihed at',
-    finishedby: 'Finished by',
-    createtask: 'Create task',
-    task: 'Task',
-    license: 'License',
-    //map view page
-    err_map: 'Geocode was not successful for the following reason: ',
+    //users page
+    users_tbl_username:"Username",
+    users_tbl_followerno:"Follower No.",
+    users_tbl_followingno:"Following No.",
+    users_tbl_likeno:"Like No.",
+    users_tbl_wallet:"Wallet",
+    users_tbl_bought:"Bought",
+    users_tbl_boostdate:"Boost Date",
+    users_tbl_boughtdate:"Bought Date",
+    users_tbl_boostcompletion:"Boost Completion",
+    //boost page
+    boost_tbl_numberofstars:"Number Of Stars",
+    boost_tbl_numberoffollows:"Number Of Follows",
+    boost_tbl_boostused:"Boost Used",
+    //packs page
+    packs_tbl_packname:"Pack Name",
+    packs_tbl_pricing:"Pricing",
+    packs_tbl_numberofstars:"Number Of Stars",
+    packs_tbl_purchaseid:"Purchase Id",
+    packs_tbl_packsbought:"Packs Bought",
+    //ads page
+    ads_tbl_adstype:"Ads Type",
+    ads_tbl_adsid:"Ads Id",
+    
+    global_tbl_action:"Action",
+    global_tbl_createddate:"Created Date",
+    global_tbl_updateddate:"Updated Date",
 };
-const kinds_of_document= new Array(
-    'Expired Document',
-    'Is on date to be done',
-    'Open, but didn\'t arrive on time',
-    'IN development',
-    'Waiting for client',
-    'Protocalada - filed',
-    'Encerrada - closed - finish'
-);
 const trans_pagination={
     records: {
         processing: 'Loading...',

@@ -1,31 +1,6 @@
 @extends('frontend.layouts.dashboard')
 @inject('dateFormat', 'App\Services\DateService')
 @section('content')
-<!--begin::Subheader-->
-<div class="subheader py-2 py-lg-4  subheader-solid " id="kt_subheader">
-    <div class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
-        <div class="d-flex align-items-center flex-wrap mr-2">
-            <h5 class="text-dark font-weight-bold mt-2 mb-2"><a href="home" class="btn btn-clean font-weight-bold" style="color:#000;font-size:15px;">{{trans('dashboard.dashboard')}}</a></h5>
-            <div class="subheader-separator subheader-separator-ver mr-4" style="background-color:#655d5d;font-size:15px;"></div>
-        
-            <span class="text-muted font-weight-bold mr-4">TOTAL USERS: 0</span>
-            <span class="text-muted font-weight-bold mr-4"></span>
-            <span class="text-muted font-weight-bold mr-4">USED BOOSTS: 0</span>
-            <span class="text-muted font-weight-bold mr-4"></span>
-            <span class="text-muted font-weight-bold mr-4">PACKS BOUGHT OF TODAY/TOTAL: 0/0</span>
-            <span class="text-muted font-weight-bold mr-4"></span>
-            <span class="text-muted font-weight-bold mr-4">REVENUE OF TODAY/TOTAL: 0</span>
-            <span class="text-muted font-weight-bold mr-4"></span>
-        </div>
-        <!--end::Info-->
-
-        <!--begin::Toolbar-->
-        <div class="d-flex align-items-center">
-        </div>
-        <!--end::Toolbar-->
-    </div>
-</div>
-<!--end::Subheader-->
 
 <!--begin::Entry-->
 <div class="d-flex flex-column-fluid">
@@ -58,23 +33,8 @@
                     <div class="card-header flex-wrap border-0 pt-6 pb-0">
                         <div class="card-title">
                             <h3 class="card-label">
-                                {{trans('dashboard.users')}}
+                                {{trans('dashboard.ads')}}
                             </h3>
-                        </div>
-                        <div class="card-toolbar">
-                            <!--begin::Button-->
-                            <button type="button" class="btn btn-light-primary font-weight-bolder mr-2" data-toggle="modal" onclick="groupAddAction(0);" data-target="#editGroupModal">
-                                <span class="svg-icon svg-icon-md"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                    <rect x="0" y="0" width="24" height="24"/>
-                                    <rect fill="#000000" opacity="0.3" transform="translate(12.000000, 7.000000) rotate(-180.000000) translate(-12.000000, -7.000000) " x="11" y="1" width="2" height="12" rx="1"/>
-                                    <path d="M17,8 C16.4477153,8 16,7.55228475 16,7 C16,6.44771525 16.4477153,6 17,6 L18,6 C20.209139,6 22,7.790861 22,10 L22,18 C22,20.209139 20.209139,22 18,22 L6,22 C3.790861,22 2,20.209139 2,18 L2,9.99305689 C2,7.7839179 3.790861,5.99305689 6,5.99305689 L7.00000482,5.99305689 C7.55228957,5.99305689 8.00000482,6.44077214 8.00000482,6.99305689 C8.00000482,7.54534164 7.55228957,7.99305689 7.00000482,7.99305689 L6,7.99305689 C4.8954305,7.99305689 4,8.88848739 4,9.99305689 L4,18 C4,19.1045695 4.8954305,20 6,20 L18,20 C19.1045695,20 20,19.1045695 20,18 L20,10 C20,8.8954305 19.1045695,8 18,8 L17,8 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"/>
-                                    <path d="M14.2928932,10.2928932 C14.6834175,9.90236893 15.3165825,9.90236893 15.7071068,10.2928932 C16.0976311,10.6834175 16.0976311,11.3165825 15.7071068,11.7071068 L12.7071068,14.7071068 C12.3165825,15.0976311 11.6834175,15.0976311 11.2928932,14.7071068 L8.29289322,11.7071068 C7.90236893,11.3165825 7.90236893,10.6834175 8.29289322,10.2928932 C8.68341751,9.90236893 9.31658249,9.90236893 9.70710678,10.2928932 L12,12.5857864 L14.2928932,10.2928932 Z" fill="#000000" fill-rule="nonzero"/>
-                                </g>
-                                </svg></span>
-                                {{trans('dashboard.adduser')}}
-                            </button>
-                            <!--end::Button-->
                         </div>
                     </div>
                     <div class="card-body">
@@ -117,45 +77,41 @@
 </div>
 <!--end::Entry-->
 
-<div class="modal fade" id="editGroupModal" tabindex="-1" role="dialog" aria-labelledby="editGroupModal" aria-hidden="true" style="display: none;">
-    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+<div class="modal fade" id="editAdModal" tabindex="-1" role="dialog" aria-labelledby="editAdModal" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">{{trans('layout.dlguser')}}</h5>
+                <h5 class="modal-title" id="exampleModalLabel">{{trans('layout.dlgad')}}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i aria-hidden="true" class="ki ki-close"></i>
                 </button>
             </div>
             <div class="modal-body">
-                <input class="form-control" type="hidden" placeholder="id" value="0" id="edit_group_id">
-                <div class="form-group row">
-                    <label for="example-search-input" class="col-1 col-form-label">{{trans('layout.description')}}<span class="text-danger">*</span></label>
-					<div class="col-3">
-						<input class="form-control" type="text" placeholder="{{trans('layout.description')}}" value="" id="edit_group_name">
-					</div>
-					<label for="example-search-input" class="col-3 col-form-label text-right">{{trans('layout.firstalert')}}<span class="text-danger">*</span></label>
-					<div class="col-2">
-						<input class="form-control" type="number" placeholder="{{trans('layout.firstalertdays')}}" value="" id="edit_group_alert_01">
-					</div>
-					<label for="example-search-input" class="col-1 col-form-label text-right">{{trans('layout.secondalert')}}<span class="text-danger">*</span></label>
-					<div class="col-2">
-						<input class="form-control" type="number" placeholder="{{trans('layout.againalertdays')}}" value="" id="edit_group_alert_02">
-					</div>
+                <input class="form-control" type="hidden" placeholder="id" value="0" id="edit_ad_id">
+                <div class="form-group">
+                    <label>ADS ID </label>
+                    <input type="text" class="form-control" id="edit_ad_adsid" placeholder="ADS Id"/>
                 </div>
                 <div class="form-group row">
-                    <div class="col-12">
-                        <textarea id="edit_group_template" class="tox-target" style="height:100px;"></textarea>
+                    <label class="col-6 col-form-label">Enable</label>
+                    <div class="col-3">
+                        <span class="switch switch-outline switch-icon switch-success">
+                            <label>
+                                <input type="checkbox" id="edit_ad_enable" name="select"/>
+                                <span></span>
+                            </label>
+                        </span>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal" id="group_model_close_btn">{{trans('layout.close')}}</button>
-                <button type="button" onclick="submitGroupEditForm();" class="btn btn-primary font-weight-bold">{{trans('layout.savechanges')}}</button>
+                <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal" id="ad_model_close_btn">{{trans('layout.close')}}</button>
+                <button type="button" onclick="submitAdEditForm();" class="btn btn-primary font-weight-bold">{{trans('layout.savechanges')}}</button>
             </div>
         </div>
     </div>
 </div>
 
 
-<script type="text/javascript" src="frontend/js/users.js"></script>
+<script type="text/javascript" src="frontend/js/ads.js"></script>
 @endsection

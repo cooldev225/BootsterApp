@@ -28,6 +28,7 @@ Route::group(['middleware' => ['login']], function () {
 
     Route::get('/users', 'UsersController@index')->name('users');
     Route::post('/users/getUsersDataTable', 'UsersController@getUsersDataTable');
+    Route::get('/users/{id}', 'UsersController@editUser');
     Route::post('/users/saveUser', 'UsersController@saveUser');
     Route::post('/users/deleteUser', 'UsersController@deleteUser');
     

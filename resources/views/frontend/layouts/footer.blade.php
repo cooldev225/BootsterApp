@@ -10,9 +10,7 @@
 
 		<!--begin::Nav-->
 		<div class="nav nav-dark">
-			<a href="" target="_blank" class="nav-link pl-0 pr-5">{{trans('layout.aboutus')}}</a>
-			<a href="" target="_blank" class="nav-link pl-0 pr-5">{{trans('layout.termuse')}}</a>
-            <a href="" target="_blank" class="nav-link pl-0 pr-0">{{trans('layout.contactus')}}</a>
+			<a href="" target="_blank" class="nav-link pl-0 pr-5">idudenkov@internet.ru</a>
         </div>
 		<!--end::Nav-->
 	</div>

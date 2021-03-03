@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Util\DbUtil;
 use App\Http\Controllers\Util\NotifyUtil;
 use Illuminate\Support\Facades\Cookie;
+
+use App\Models\Customer;
+use App\Models\Transaction;
+use App\Models\BoostHistory;
+use App\Models\BoostPackage;
 class DashboardComposer
 {
     public function __construct()
@@ -29,9 +34,18 @@ class DashboardComposer
 
         $view->with('_currentUrl', $_currentUrl);
         $view->with('currentUrl', $currentUrl);
-        //$view->with('userRole', $userRole);
-        //$view->with('taskLogList', DbUtil::getTaskLogsByDocument());
-        //$view->with('notificationByDoc', NotifyUtil::getNotificationByDocument());
+
+        $todayRevenue=0;
+        foreach(Transaction::select()->whereRaw('DATE(created_at)=CURDATE()')->get() as $row)$todayRevenue+=$row['amount'];
+        $totalRevenue=0;
+        foreach(Transaction::select()->get() as $row)$totalRevenue+=$row['amount'];
+        $view->with('totalUser',Customer::select()->count());
+        $view->with('todayBooster',BoostHistory::select()->whereRaw('DATE(created_at)=CURDATE()')->count());
+        $view->with('todayPackageBought',Transaction::select()->whereRaw('DATE(created_at)=CURDATE()')->count());
+        $view->with('totalPackageBought',BoostHistory::select()->count());
+        $view->with('todayRevenue',$todayRevenue);
+        $view->with('totalRevenue',$totalRevenue);
+
         if($notification=DbUtil::getDevAlert()!='')$view->with('notification', $notification);
 
         if(request()->get('lang')){

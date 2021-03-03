@@ -6,20 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use DB;
-use App\Models\Business;
-use App\Models\Company;
-use App\Models\Contract;
-use App\Models\ContractAttach;
-use App\Models\Document;
-use App\Models\Project;
 use App\Models\Role;
 use App\Models\RoleUser;
-use App\Models\Task;
-use App\Models\TaskLog;
-use App\Models\Transaction;
 use App\Models\User;
 use App\Models\AttachFile;
-use App\Models\Municipio;
 use Illuminate\Support\Facades\File;
 class DbUtil extends Controller{
     public static function attachFile($file,$kind,$id){

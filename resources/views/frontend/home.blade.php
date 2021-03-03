@@ -1,31 +1,6 @@
 @extends('frontend.layouts.dashboard')
 @inject('dateFormat', 'App\Services\DateService')
 @section('content')
-<!--begin::Subheader-->
-<div class="subheader py-2 py-lg-4  subheader-solid " id="kt_subheader">
-    <div class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
-        <div class="d-flex align-items-center flex-wrap mr-2">
-            <h5 class="text-dark font-weight-bold mt-2 mb-2"><a href="home" class="btn btn-clean font-weight-bold" style="color:#000;font-size:15px;">{{trans('dashboard.dashboard')}}</a></h5>
-            <div class="subheader-separator subheader-separator-ver mr-4" style="background-color:#655d5d;font-size:15px;"></div>
-        
-            <span class="text-muted font-weight-bold mr-4">TOTAL USERS: 0</span>
-            <span class="text-muted font-weight-bold mr-4"></span>
-            <span class="text-muted font-weight-bold mr-4">USED BOOSTS: 0</span>
-            <span class="text-muted font-weight-bold mr-4"></span>
-            <span class="text-muted font-weight-bold mr-4">PACKS BOUGHT OF TODAY/TOTAL: 0/0</span>
-            <span class="text-muted font-weight-bold mr-4"></span>
-            <span class="text-muted font-weight-bold mr-4">REVENUE OF TODAY/TOTAL: 0</span>
-            <span class="text-muted font-weight-bold mr-4"></span>
-        </div>
-        <!--end::Info-->
-
-        <!--begin::Toolbar-->
-        <div class="d-flex align-items-center">
-        </div>
-        <!--end::Toolbar-->
-    </div>
-</div>
-<!--end::Subheader-->
 
 <!--begin::Entry-->
 <div class="d-flex flex-column-fluid">

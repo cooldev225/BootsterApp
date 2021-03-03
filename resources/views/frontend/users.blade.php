@@ -1,31 +1,6 @@
 @extends('frontend.layouts.dashboard')
 @inject('dateFormat', 'App\Services\DateService')
 @section('content')
-<!--begin::Subheader-->
-<div class="subheader py-2 py-lg-4  subheader-solid " id="kt_subheader">
-    <div class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
-        <div class="d-flex align-items-center flex-wrap mr-2">
-            <h5 class="text-dark font-weight-bold mt-2 mb-2"><a href="home" class="btn btn-clean font-weight-bold" style="color:#000;font-size:15px;">{{trans('dashboard.dashboard')}}</a></h5>
-            <div class="subheader-separator subheader-separator-ver mr-4" style="background-color:#655d5d;font-size:15px;"></div>
-        
-            <span class="text-muted font-weight-bold mr-4">TOTAL USERS: 0</span>
-            <span class="text-muted font-weight-bold mr-4"></span>
-            <span class="text-muted font-weight-bold mr-4">USED BOOSTS: 0</span>
-            <span class="text-muted font-weight-bold mr-4"></span>
-            <span class="text-muted font-weight-bold mr-4">PACKS BOUGHT OF TODAY/TOTAL: 0/0</span>
-            <span class="text-muted font-weight-bold mr-4"></span>
-            <span class="text-muted font-weight-bold mr-4">REVENUE OF TODAY/TOTAL: 0</span>
-            <span class="text-muted font-weight-bold mr-4"></span>
-        </div>
-        <!--end::Info-->
-
-        <!--begin::Toolbar-->
-        <div class="d-flex align-items-center">
-        </div>
-        <!--end::Toolbar-->
-    </div>
-</div>
-<!--end::Subheader-->
 
 <!--begin::Entry-->
 <div class="d-flex flex-column-fluid">
@@ -103,46 +78,6 @@
     <!--end::Container-->
 </div>
 <!--end::Entry-->
-
-<div class="modal fade" id="editGroupModal" tabindex="-1" role="dialog" aria-labelledby="editGroupModal" aria-hidden="true" style="display: none;">
-    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">{{trans('layout.dlguser')}}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <i aria-hidden="true" class="ki ki-close"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <input class="form-control" type="hidden" placeholder="id" value="0" id="edit_group_id">
-                <div class="form-group row">
-                    <label for="example-search-input" class="col-1 col-form-label">{{trans('layout.description')}}<span class="text-danger">*</span></label>
-					<div class="col-3">
-						<input class="form-control" type="text" placeholder="{{trans('layout.description')}}" value="" id="edit_group_name">
-					</div>
-					<label for="example-search-input" class="col-3 col-form-label text-right">{{trans('layout.firstalert')}}<span class="text-danger">*</span></label>
-					<div class="col-2">
-						<input class="form-control" type="number" placeholder="{{trans('layout.firstalertdays')}}" value="" id="edit_group_alert_01">
-					</div>
-					<label for="example-search-input" class="col-1 col-form-label text-right">{{trans('layout.secondalert')}}<span class="text-danger">*</span></label>
-					<div class="col-2">
-						<input class="form-control" type="number" placeholder="{{trans('layout.againalertdays')}}" value="" id="edit_group_alert_02">
-					</div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-12">
-                        <textarea id="edit_group_template" class="tox-target" style="height:100px;"></textarea>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal" id="group_model_close_btn">{{trans('layout.close')}}</button>
-                <button type="button" onclick="submitGroupEditForm();" class="btn btn-primary font-weight-bold">{{trans('layout.savechanges')}}</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 
 <script type="text/javascript" src="frontend/js/users.js"></script>
 @endsection

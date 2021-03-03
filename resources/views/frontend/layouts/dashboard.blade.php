@@ -2,7 +2,7 @@
 <html lang="{{ $lang }}">
 <head>
     <meta charset="utf-8">
-    <meta name="description" content="Login page Witbooster"/>
+    <meta name="description" content="Witbooster"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
@@ -11,32 +11,32 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script type="text/javascript" src="frontend/js/common.js"></script>
-    <script type="text/javascript" src="metronic/plugins/global/plugins.bundle.js"></script>
-    <script type="text/javascript" src="metronic/plugins/custom/prismjs/prismjs.bundle.js"></script>
-    <script type="text/javascript" src="metronic/js/scripts.bundle.js"></script>
-    <script type="text/javascript" src="metronic/plugins/custom/datatables/datatables.bundle.js"></script>
-    <script type="text/javascript" src="metronic/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
-    <script type="text/javascript" src="metronic/js/pages/widgets.js"></script>
-    <script src="metronic/plugins/custom/tinymce/tinymce.bundle.js"></script>
+    <script type="text/javascript" src="/frontend/js/common.js"></script>
+    <script type="text/javascript" src="/metronic/plugins/global/plugins.bundle.js"></script>
+    <script type="text/javascript" src="/metronic/plugins/custom/prismjs/prismjs.bundle.js"></script>
+    <script type="text/javascript" src="/metronic/js/scripts.bundle.js"></script>
+    <script type="text/javascript" src="/metronic/plugins/custom/datatables/datatables.bundle.js"></script>
+    <script type="text/javascript" src="/metronic/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
+    <script type="text/javascript" src="/metronic/js/pages/widgets.js"></script>
+    <script src="/metronic/plugins/custom/tinymce/tinymce.bundle.js"></script>
 
-    <script src="frontend/js/lang/{{$lang}}.js"></script>
+    <script src="/frontend/js/lang/{{$lang}}.js"></script>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
     <!-- Styles -->
-    <link href="metronic/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet">
-    <link href="metronic/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet">
-    <link href="metronic/plugins/global/plugins.bundle.css" rel="stylesheet">
-    <link href="metronic/plugins/custom/prismjs/prismjs.bundle.css" rel="stylesheet">
-    <link href="metronic/css/style.bundle.css" rel="stylesheet">
-    <link href="metronic/css/themes/layout/header/base/light.css" rel="stylesheet">
-    <link href="metronic/css/themes/layout/header/menu/light.css" rel="stylesheet">
-    <link href="metronic/css/themes/layout/brand/dark.css" rel="stylesheet">
-    <link href="metronic/css/themes/layout/aside/dark.css" rel="stylesheet">
-    <link href="frontend/css/common.css" rel="stylesheet">
-    <link href="frontend/css/custom.css" rel="stylesheet">
+    <link href="/metronic/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet">
+    <link href="/metronic/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet">
+    <link href="/metronic/plugins/global/plugins.bundle.css" rel="stylesheet">
+    <link href="/metronic/plugins/custom/prismjs/prismjs.bundle.css" rel="stylesheet">
+    <link href="/metronic/css/style.bundle.css" rel="stylesheet">
+    <link href="/metronic/css/themes/layout/header/base/light.css" rel="stylesheet">
+    <link href="/metronic/css/themes/layout/header/menu/light.css" rel="stylesheet">
+    <link href="/metronic/css/themes/layout/brand/dark.css" rel="stylesheet">
+    <link href="/metronic/css/themes/layout/aside/dark.css" rel="stylesheet">
+    <link href="/frontend/css/common.css" rel="stylesheet">
+    <link href="/frontend/css/custom.css" rel="stylesheet">
 
-    <link rel="shortcut icon" href="images/logo.ico"/>
+    <link rel="shortcut icon" href="/images/logo.ico"/>
 </head>
 @inject('dateFormat', 'App\Services\DateService')
 <body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed">
@@ -45,7 +45,7 @@
     <div id="kt_header_mobile" class="header-mobile align-items-center  header-mobile-fixed " >
         <!--begin::Logo-->
         <a href="">
-            <img alt="Logo" src="images/logo.svg" />
+            <img alt="Logo" src="/images/logo.svg" />
         </a>
         <!--end::Logo-->
 
@@ -130,7 +130,7 @@
                             <!--begin::Header Logo-->
                             <div class="header-logo">
                                 <a href="home">
-                                    <img alt="Logo" src="images/logo.svg"/>
+                                    <img alt="Logo" src="/images/logo.svg"/>
                                 </a>
                             </div>
                             <div id="kt_header_menu" class="header-menu header-menu-mobile  header-menu-layout-default " >
@@ -231,7 +231,7 @@
                                     <div class="btn btn-icon btn-clean btn-lg mr-1">
                                         @for($i=0;$i<count($language_img);$i++)
                                         @if($lang==$language_lab[$i])
-                                            <img class="h-20px w-20px rounded-sm" src="metronic/media/svg/flags/{{$language_img[$i]}}" alt="">
+                                            <img class="h-20px w-20px rounded-sm" src="/metronic/media/svg/flags/{{$language_img[$i]}}" alt="">
                                         @endif
                                         @endfor
                                     </div>
@@ -244,7 +244,7 @@
                                         <li class="navi-item active">
                                             <a href="{{$_currentUrl}}?lang={{$language_lab[$i]}}" class="navi-link">
                                                 <span class="symbol symbol-20 mr-3">
-                                                    <img src="metronic/media/svg/flags/{{$language_img[$i]}}" alt="">
+                                                    <img src="/metronic/media/svg/flags/{{$language_img[$i]}}" alt="">
                                                 </span>
                                                 <span class="navi-text">{{$language_txt[$i]}}</span>
                                             </a>
@@ -277,8 +277,44 @@
 
                 <!--begin::Content-->
                 <div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
-                @yield('content')
+                    <!--begin::Subheader-->
+                    <div class="subheader py-2 py-lg-4  subheader-solid " id="kt_subheader">
+                        <div class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+                            <div class="d-flex align-items-center flex-wrap mr-2">
+                                <h5 class="text-dark font-weight-bold mt-2 mb-2">
+                                    @if(Request::path()=='home'||Request::path()==''||Request::path()=='home/index')
+                                    <a href="home" class="btn btn-clean font-weight-bold" style="color:#000;font-size:15px;">{{trans('dashboard.dashboard')}}</a>
+                                    @elseif(count(explode('users',Request::path()))>1)
+                                    <a href="users" class="btn btn-clean font-weight-bold" style="color:#000;font-size:15px;">{{trans('dashboard.users')}}</a>
+                                    @elseif(count(explode('boost',Request::path()))>1)
+                                    <a href="boost" class="btn btn-clean font-weight-bold" style="color:#000;font-size:15px;">{{trans('dashboard.boost')}}</a>
+                                    @elseif(count(explode('packs',Request::path()))>1)
+                                    <a href="packs" class="btn btn-clean font-weight-bold" style="color:#000;font-size:15px;">{{trans('dashboard.packs')}}</a>
+                                    @elseif(count(explode('ads',Request::path()))>1)
+                                    <a href="ads" class="btn btn-clean font-weight-bold" style="color:#000;font-size:15px;">{{trans('dashboard.ads')}}</a>
+                                    @endif
+                                </h5>
+                                <div class="subheader-separator subheader-separator-ver mr-4" style="background-color:#655d5d;font-size:15px;"></div>
+                            
+                                <span class="text-muted font-weight-bold mr-4">TOTAL USERS: {{$totalUser}}</span>
+                                <span class="text-muted font-weight-bold mr-4"></span>
+                                <span class="text-muted font-weight-bold mr-4">USED BOOSTS: {{$todayBooster}}</span>
+                                <span class="text-muted font-weight-bold mr-4"></span>
+                                <span class="text-muted font-weight-bold mr-4">PACKS BOUGHT OF TODAY/TOTAL: {{$todayPackageBought}}/{{$totalPackageBought}}</span>
+                                <span class="text-muted font-weight-bold mr-4"></span>
+                                <span class="text-muted font-weight-bold mr-4">REVENUE OF TODAY/TOTAL: {{$todayRevenue}}/{{$totalRevenue}}</span>
+                                <span class="text-muted font-weight-bold mr-4"></span>
+                            </div>
+                            <!--end::Info-->
 
+                            <!--begin::Toolbar-->
+                            <div class="d-flex align-items-center">
+                            </div>
+                            <!--end::Toolbar-->
+                        </div>
+                    </div>
+                    <!--end::Subheader-->
+                    @yield('content')
                 </div>
                 <!--end::Content-->
 
@@ -311,7 +347,7 @@
             <!--begin::Header-->
             <div class="d-flex align-items-center mt-5">
                 <div class="symbol symbol-100 mr-5">
-                    <div class="symbol-label" style="background-image:url('metronic/media/users/<?php echo Auth::user()->avatar!=null?Auth::user()->avatar:'default.jpg';?>')"></div>
+                    <div class="symbol-label" style="background-image:url('/metronic/media/users/<?php echo Auth::user()->avatar!=null?Auth::user()->avatar:'default.jpg';?>')"></div>
                     <i class="symbol-badge bg-success"></i>
                 </div>
                 <div class="d-flex flex-column">
@@ -378,6 +414,6 @@
     <!--end::Scrolltop-->
 
 <!--begin::Body-->
-<script type="text/javascript" src="frontend/js/dashboard.js"></script>
+<script type="text/javascript" src="/frontend/js/dashboard.js"></script>
 </body>
 </html>

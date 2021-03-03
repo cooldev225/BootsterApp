@@ -7,6 +7,13 @@ return [
     'packs' => 'PACKS',
     'ads' => 'ADS',
     //users
-    'adduser' => 'Add User',
-    'dlguser' => 'User',
+    'newuser' => 'Add User',
+    //boost
+    'newboost' => 'NEW BOOST',
+    'dlgboost' => 'BOOST Dialog',
+    //packs
+    'newpack' => 'NEW PACK',
+    'dlgpack' => 'PACK Dialog',
+    //ads
+    'dlgad' => 'ADS Dialog',
 ];

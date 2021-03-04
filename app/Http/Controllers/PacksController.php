@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\BoostHistory;
 use App\Models\BoostPackage;
+use App\Models\Transaction;
 class PacksController extends Controller
 {
     public function __construct()
@@ -60,5 +61,22 @@ class PacksController extends Controller
         $row->delete();
         $res=array('msg'=>'ok');
 		exit(json_encode($res));
+    }
+    public function getPackagesByYear(Request $request){
+        $res=array();
+        $os=$request->input('os');
+        $pack=$request->input('pack');
+        $date=$request->input('date');
+        for($i=1;$i<13;$i++){
+            $query=Transaction::select('transactions.amount as amount')
+            ->leftJoin('boost_package','transactions.productId','=','boost_package.id')
+            ->whereRaw("YEAR(transactions.created_at)='{$date}'")
+            ->whereRaw("MONTH(transactions.created_at)='{$i}'");
+            if($os)$query=$query->where('boost_package.os','=',$os);
+            if($pack)$query=$query->where('boost_package.id','=',$pack);
+            $res[$i-1]=0;
+            foreach($query->get() as $row)$res[$i-1]+=$row['amount'];
+        }
+        return $res;
     }
 }

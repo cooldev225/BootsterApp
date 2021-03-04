@@ -16,8 +16,7 @@ use App\Models\Session;
 use App\Models\User;
 
 use App\Datas\MailData;
-
-
+use App\Models\LastLogin;
 class AuthController extends Controller
 {
     public function __invoke(Request $request)
@@ -68,7 +67,7 @@ class AuthController extends Controller
                         Session::select()->where('user_id',Auth::id())->delete();//Auth::logoutUsingId(Auth::id());
                         Auth::logout();                        
                         $user = Auth::user();
-                        $user->logout = true;
+                        $user->logout = 1;
                         $user->save();
                         session()->flash('logout', "You are Logged in on other devices");
                         return view('frontend.auth.login', ['page_title' => 'Login','error'=>"double_attempt"]);
@@ -84,6 +83,10 @@ class AuthController extends Controller
                 $session->save();
             }
             $request->session()->regenerate();
+            $row=new LastLogin;
+            $row->userId=Auth::id();
+            $row->time=date("Y-m-d H:i:s");
+            $row->save();
             return redirect()->intended('home');
         }
         else

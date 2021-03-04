@@ -5,6 +5,7 @@ use App\Models\Customer;
 use App\Models\Transaction;
 use App\Models\BoostHistory;
 use App\Models\BoostPackage;
+use App\Models\LastLogin;
 class UsersController extends Controller
 {
     public function __construct()
@@ -72,5 +73,15 @@ class UsersController extends Controller
         $row->delete();
         $res=array('msg'=>'ok');
 		exit(json_encode($res));
+    }
+    public function getLastLoginByMonth(Request $request){
+        $res=array();
+        $date=explode("-",$request->input('date'));
+        $j=0;
+        for($i=mktime(0,0,0,$date[1],1,$date[0]);$i<($date[1]<12?mktime(0,0,0,$date[1]+1,1,$date[0]):mktime(0,0,0,1,1,$date[0]+1));$i+=86400){
+            $d=date("Y-m-d",$i);
+            $res[$j++]=LastLogin::select()->whereRaw("DATE(time)='{$d}'")->count();
+        }
+        return $res;
     }
 }

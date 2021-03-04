@@ -31,16 +31,19 @@ Route::group(['middleware' => ['login']], function () {
     Route::get('/users/{id}', 'UsersController@editUser');
     Route::post('/users/saveUser', 'UsersController@saveUser');
     Route::post('/users/deleteUser', 'UsersController@deleteUser');
+    Route::post('/users/getLastLoginByMonth', 'UsersController@getLastLoginByMonth');
     
     Route::get('/boost', 'BoostController@index')->name('boost');
     Route::post('/boost/getBoostsDataTable', 'BoostController@getBoostsDataTable');
     Route::post('/boost/saveBoost', 'BoostController@saveBoost');
     Route::post('/boost/deleteBoost', 'BoostController@deleteBoost');
+    Route::post('/boost/getBoostByYear', 'BoostController@getBoostByYear');
 
     Route::get('/packs', 'PacksController@index')->name('packs');
     Route::post('/packs/getPacksDataTable', 'PacksController@getPacksDataTable');
     Route::post('/packs/savePack', 'PacksController@savePack');
     Route::post('/packs/deletePack', 'PacksController@deletePack');
+    Route::post('/packs/getPackagesByYear', 'PacksController@getPackagesByYear');
 
     Route::get('/ads', 'AdsController@index')->name('ads');
     Route::post('/ads/getAdsDataTable', 'AdsController@getAdsDataTable');

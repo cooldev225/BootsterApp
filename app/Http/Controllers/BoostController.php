@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\BoostHistory;
 use App\Models\BoostStars;
+use App\Models\BoostPackage;
 class BoostController extends Controller
 {
     public function __construct()
@@ -58,5 +59,27 @@ class BoostController extends Controller
         $row->delete();
         $res=array('msg'=>'ok');
 		exit(json_encode($res));
+    }
+    public function getBoostByYear(Request $request){
+        $res=array();
+        $star=$request->input('star');
+        $date=$request->input('date');
+        $j=1;
+        foreach(BoostPackage::select()->orderBy('created_at')->get() as $pack){
+            $res[0][$j-1]=$pack['packageName'];
+            for($i=1;$i<13;$i++){
+                $query=BoostHistory::select('boost_history.amount as amount')
+                ->leftJoin('boost_stars','boost_history.boostStarsId','=','boost_stars.id')
+                ->leftJoin('boost_package','boost_package.packageStar','=','boost_history.stars')
+                ->whereRaw("YEAR(boost_history.created_at)='{$date}'")
+                ->whereRaw("MONTH(boost_history.created_at)='{$i}'")
+                ->where('boost_package.id','=',$pack['id']);
+                if($star)$query=$query->where('boost_stars.id','=',$star);
+                $res[$j][$i-1]=0;
+                foreach($query->get() as $row)$res[$j][$i-1]+=$row['amount'];
+            }
+            $j++;
+        }
+        return $res;
     }
 }

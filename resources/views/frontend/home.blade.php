@@ -38,7 +38,7 @@
                             </g>
                             </svg><!--end::Svg Icon-->
                         </span>
-                        <span class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-6 d-block">0</span>
+                        <span class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-6 d-block">{{$totalUser}}</span>
                         <span class="font-weight-bold text-muted font-size-sm">Total of users</span>
                     </div>
                     <!--end::Body-->
@@ -57,7 +57,7 @@
                                                     <path d="M7,7 L9,7 C9,8.65685425 10.3431458,10 12,10 C13.6568542,10 15,8.65685425 15,7 L17,7 C17,9.76142375 14.7614237,12 12,12 C9.23857625,12 7,9.76142375 7,7 Z" fill="#000000"/>
                                                 </g>
                                             </svg><!--end::Svg Icon--></span>
-                        <span class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-6 d-block">0</span>
+                        <span class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-6 d-block">{{$todayBooster}}</span>
                         <span class="font-weight-bold text-muted font-size-sm">Today boosts used</span>
                     </div>
                     <!--end::Body-->
@@ -76,7 +76,7 @@
                                                     <path d="M6.5,21 C5.67157288,21 5,20.3284271 5,19.5 C5,18.6715729 5.67157288,18 6.5,18 C7.32842712,18 8,18.6715729 8,19.5 C8,20.3284271 7.32842712,21 6.5,21 Z M15.5,21 C14.6715729,21 14,20.3284271 14,19.5 C14,18.6715729 14.6715729,18 15.5,18 C16.3284271,18 17,18.6715729 17,19.5 C17,20.3284271 16.3284271,21 15.5,21 Z" fill="#000000"/>
                                                 </g>
                                             </svg><!--end::Svg Icon--></span>
-                        <span class="card-title font-weight-bolder text-white font-size-h2 mb-0 mt-6 d-block">0</span>
+                        <span class="card-title font-weight-bolder text-white font-size-h2 mb-0 mt-6 d-block">{{$todayPackageBought}}</span>
                         <span class="font-weight-bold text-white font-size-sm">Today packs bought</span>
                     </div>
                     <!--end::Body-->
@@ -95,7 +95,7 @@
                                                     <path d="M6.5,21 C5.67157288,21 5,20.3284271 5,19.5 C5,18.6715729 5.67157288,18 6.5,18 C7.32842712,18 8,18.6715729 8,19.5 C8,20.3284271 7.32842712,21 6.5,21 Z M15.5,21 C14.6715729,21 14,20.3284271 14,19.5 C14,18.6715729 14.6715729,18 15.5,18 C16.3284271,18 17,18.6715729 17,19.5 C17,20.3284271 16.3284271,21 15.5,21 Z" fill="#000000"/>
                                                 </g>
                                             </svg><!--end::Svg Icon--></span>
-                        <span class="card-title font-weight-bolder text-white font-size-h2 mb-0 mt-6 d-block">0</span>
+                        <span class="card-title font-weight-bolder text-white font-size-h2 mb-0 mt-6 d-block">{{$totalPackageBought}}</span>
                         <span class="font-weight-bold text-white font-size-sm">Total of packs bought</span>
                     </div>
                     <!--end::Body-->
@@ -114,7 +114,7 @@
                                 <path d="M3.5,9 L20.5,9 C21.0522847,9 21.5,9.44771525 21.5,10 C21.5,10.132026 21.4738562,10.2627452 21.4230769,10.3846154 L17.7692308,19.1538462 C17.3034221,20.271787 16.2111026,21 15,21 L9,21 C7.78889745,21 6.6965779,20.271787 6.23076923,19.1538462 L2.57692308,10.3846154 C2.36450587,9.87481408 2.60558331,9.28934029 3.11538462,9.07692308 C3.23725479,9.02614384 3.36797398,9 3.5,9 Z M12,17 C13.1045695,17 14,16.1045695 14,15 C14,13.8954305 13.1045695,13 12,13 C10.8954305,13 10,13.8954305 10,15 C10,16.1045695 10.8954305,17 12,17 Z" fill="#000000"/>
                             </g>
                         </svg><!--end::Svg Icon--></span>
-                        <span class="card-title font-weight-bolder text-white font-size-h2 mb-0 mt-6 d-block">$0</span>
+                        <span class="card-title font-weight-bolder text-white font-size-h2 mb-0 mt-6 d-block">${{$todayRevenue}}</span>
                         <span class="font-weight-bold text-white  font-size-sm">Today revenue</span>
                     </div>
                     <!--end::Body-->
@@ -133,7 +133,7 @@
                                 <path d="M3.5,9 L20.5,9 C21.0522847,9 21.5,9.44771525 21.5,10 C21.5,10.132026 21.4738562,10.2627452 21.4230769,10.3846154 L17.7692308,19.1538462 C17.3034221,20.271787 16.2111026,21 15,21 L9,21 C7.78889745,21 6.6965779,20.271787 6.23076923,19.1538462 L2.57692308,10.3846154 C2.36450587,9.87481408 2.60558331,9.28934029 3.11538462,9.07692308 C3.23725479,9.02614384 3.36797398,9 3.5,9 Z M12,17 C13.1045695,17 14,16.1045695 14,15 C14,13.8954305 13.1045695,13 12,13 C10.8954305,13 10,13.8954305 10,15 C10,16.1045695 10.8954305,17 12,17 Z" fill="#000000"/>
                             </g>
                         </svg><!--end::Svg Icon--></span>
-                        <span class="card-title font-weight-bolder text-white font-size-h2 mb-0 mt-6 d-block">$0</span>
+                        <span class="card-title font-weight-bolder text-white font-size-h2 mb-0 mt-6 d-block">${{$totalRevenue}}</span>
                         <span class="font-weight-bold text-white font-size-sm">Total of revenue</span>
                     </div>
                     <!--end::Body-->
@@ -153,6 +153,18 @@
                             <h3 class="card-label">
                                 Packs Bought By Year($)
                             </h3>
+                            <select class="form-control mr-2" id="chart_pack_os" style="max-width:80px;" name="param">
+                                <option value="0">_ALL_</option>
+                                <option value="1">Android</option>
+                                <option value="2">iOS</option>
+                            </select>
+                            <select class="form-control mr-2" id="chart_pack_name" style="max-width:100px;" name="param">
+                            <option value="0">_ALL_</option>
+                            @foreach($packList as $pack)
+                                <option value="{{$pack['id']}}">{{$pack['packageName']}}</option>
+                            @endforeach
+                            </select>
+                            <input type="text" class="form-control" id="chart_pack_date" style="width:60px;" readonly placeholder="Select date" value="{{date('Y')}}"/>
                         </div>
                         <!--end::Title-->
                     </div>
@@ -173,6 +185,13 @@
                             <h3 class="card-label">
                                 Boost Used By Year(k)
                             </h3>
+                            <select class="form-control mr-2" id="chart_star_name" style="max-width:100px;" name="param">
+                            <option value="0">_ALL_</option>
+                            @foreach($starList as $star)
+                                <option value="{{$star['id']}}">{{$star['stars']}}⭐️</option>
+                            @endforeach
+                            </select>
+                            <input type="text" class="form-control" id="chart_star_date" style="width:60px;" readonly placeholder="Select date" value="{{date('Y')}}"/>
                         </div>
                     </div>
                     <div class="card-body">
@@ -191,6 +210,7 @@
                             <h3 class="card-label">
                                 Active Users by Month
                             </h3>
+                            <input type="text" class="form-control" id="chart_users_date" style="width:100px;" readonly placeholder="Select date" value="{{date('Y-m')}}"/>
                         </div>
                     </div>
                     <div class="card-body">

@@ -1,7 +1,8 @@
+
 <IfModule mod_rewrite.c>
 RewriteEngine On   
-RewriteCond %{HTTP_HOST} ^auras.app.br$ [NC,OR]     
-RewriteCond %{HTTP_HOST} ^www.auras.app.br$      
+RewriteCond %{HTTP_HOST} ^republicmovil.com$ [NC,OR]     
+RewriteCond %{HTTP_HOST} ^republicmovil.com$      
 RewriteCond %{REQUEST_URI} !public/
 RewriteRule (.*) /public/$1 [L]
 </IfModule>

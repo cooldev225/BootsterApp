@@ -66,9 +66,9 @@ class AuthController extends Controller
                     }else{
                         Session::select()->where('user_id',Auth::id())->delete();//Auth::logoutUsingId(Auth::id());
                         Auth::logout();                        
-                        $user = Auth::user();
-                        $user->logout = 1;
-                        $user->save();
+                        //$user = Auth::user();
+                        //$user->logout = 1;
+                        //$user->save();
                         session()->flash('logout', "You are Logged in on other devices");
                         return view('frontend.auth.login', ['page_title' => 'Login','error'=>"double_attempt"]);
                     }

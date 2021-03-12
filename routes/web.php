@@ -61,7 +61,8 @@ Route::post('/v1/api/getBoostPackages', 'API\\CommonController@getBoostPackages'
 Route::post('/v1/api/reward/video', 'API\\CommonController@rewardVideo');
 Route::post('/v1/api/reward/tiktok', 'API\\CommonController@rewardTiktok');
 Route::post('/v1/api/user/purchaseStar', 'API\\CommonController@purchaseStar');//-----------
-Route::post('/v1/api/user/login', 'API\\UserController@login');//---------------------------
+Route::post('/v1/api/user/login', 'API\\UserController@login');
+Route::get('/v1/api/user/login', 'API\\UserController@login');//---------------------------
 Route::post('/v1/api/user/updateToken', 'API\\UserController@updateToken');//---------------
 Route::post('/v1/api/user/profile', 'API\\UserController@profile');//-----------------------
 Route::post('/v1/api/feeds', 'API\\CommonController@feeds');//------------------------------

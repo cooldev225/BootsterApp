@@ -27,12 +27,15 @@ class CommonController extends Controller
         //$this->middleware('auth');
     }
     public function getBoostPackages(Request $request){
+        header("Content-type: application/json");
         $os_name=$request->input('os');
-        return BoostPackage::select()
+        $res= BoostPackage::select()
         //->where('os','=',$os_name)
         ->orderBy('packageStar')->orderBy('id')->get();
+        return UserController::ok($res);
     }
     public function purchaseStar(Request $request){
+        header("Content-type: application/json");
         $orderId=$request->input('orderId');
         $package_name=$request->input('packageName');
         $product_id=$request->input('productId');
@@ -79,14 +82,15 @@ class CommonController extends Controller
         $trans->amount= $pricing;
         $trans->updated_at=$create_at;
         $trans->save();
-        return array('orderId'=>$orderId, 'stars'=> $stars);
+        return UserController::ok(array('orderId'=>$orderId, 'stars'=> $stars));
     }
     public function config(Request $request){
+        header("Content-type: application/json");
         $configs = Ads::select()->get();
         $data = array(
             'google'=> $configs
         );
-        return $data;
+        return UserController::ok($data);
     }
     public function rewardVideo(Request $request){
         
@@ -95,16 +99,19 @@ class CommonController extends Controller
         
     }
     public function feeds(Request $request){
+        header("Content-type: application/json");
         $page_num = $request->input('page');
         $page_size = $request->input('size');
         $userId = $request->input('userid');
         $skips = $page_size * ($page_num - 1);
         $user = Customer::find($userId);
         if($user==null)exit('user no found');
-        return Feed::select()->orderBy('boostStars','desc')
+        $res= Feed::select()->orderBy('boostStars','desc')
                 ->orderBy('id')->skip($skips)->take($page_size)->get();
+        return UserController::ok($res);
     }
     public function follow(Request $request){
+        header("Content-type: application/json");
         $user_id = $request->input('userId');
         $feed_id = $request->input('feedId');
         $user = Customer::find($user_id);
@@ -138,14 +145,16 @@ class CommonController extends Controller
             }else 
                 $history=$history->get()[0];
             $history_updated_at=date('Y-m-d H:i:s');
-            return array('success'=>1);
+            return UserController::ok(array('success'=>1));
         }else
-            return array('success'=>0);        
+            return UserController::ok(array('success'=>0));        
     }
     public function getAllBoost(Request $request){
-        return BoostStars::select()->get();
+        header("Content-type: application/json");
+        return UserController::ok(BoostStars::select()->get());
     }
     public function boost(Request $request){
+        header("Content-type: application/json");
         $stars=$request->input('stars');
         $boost_star_id=$request->input('boostStarsId');
         $userId=$request->input('userId');
@@ -194,7 +203,7 @@ class CommonController extends Controller
         $row->stars=$stars;//boostStars
         $row->boostStarsId=$boost_star_id;
         $row->save();
-        return array('boost'=> $stars);
+        return UserController::ok(array('boost'=> $stars));
     }
 
     public function download(Request $request)

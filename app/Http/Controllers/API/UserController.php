@@ -24,6 +24,7 @@ class UserController extends Controller
     }
     
     public function login(Request $request){
+        header("Content-type: text/html");
         $username=$request->input('username');
         $jsonProfile = self::tiktok_api_get_profile($username);
         if(!isset($jsonProfile['fans']))return '{}';
@@ -40,6 +41,7 @@ class UserController extends Controller
             $user->uniqueId=$username;
             $user->stars=5;
             $user->isNew=1;
+            $user->upsert=0;
             $user->created_at=date('Y-m-d H:i:s');   
         }
         $user->following=$following;
@@ -55,9 +57,10 @@ class UserController extends Controller
         $row->time=$user->updated_at;
         $row->save();
         $data = json_encode($user);
-        return $data;
+        return self::ok($user);
     }
     public function updateToken(Request $request){
+        header("Content-type: application/json");
         $token=$request->input('token');
         $user_id=$request->input('userId');
         $user = Customer::find($user_id);
@@ -69,20 +72,21 @@ class UserController extends Controller
         $row->userId=$user->id;
         $row->time=date('Y-m-d H:i:s');   
         $row->save();
-        return "{}";
+        return self::ok();
     }
     public function profile(Request $request){
+        header("Content-type: application/json");
         $userId=$request->input('userId');
         $user = Customer::find($userId);
-        if($user==null)exit('something wrong!');
-        return $user;
+        if($user==null)return self::err('something wrong!');
+        return self::ok($user);
     }
 
     //
     public static function tiktok_api_get_profile($username){
         $curl = curl_init();
         curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://tiktok.com/@'.$username.'?lang=en',
+            CURLOPT_URL => 'https://www.tiktok.com/@'.$username.'?lang=en',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -91,7 +95,7 @@ class UserController extends Controller
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             //CURLOPT_CUSTOMREQUEST => 'POST',
             CURLOPT_HTTPHEADER => array(
-                'authority: www.tiktok.com',
+                'authority: https://www.tiktok.com/',
                 'path: /@'.$username,
                 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
                 'sessionid: ',
@@ -142,5 +146,26 @@ class UserController extends Controller
             $res.=substr($str,$j,1);
         }
         return $res;
+    }
+    public static function ok($obj=null){
+        if($obj==null)
+            return array(
+                'data'=> '',
+                'message'=> 'success',
+                'error'=> 0
+            );
+        else 
+            return array(
+            'data'=> $obj,
+            'message'=> 'success',
+            'error'=> 0
+        );
+    }
+    public static function err($msg){
+        return array(
+            'data'=> '',
+            'message'=> $msg,
+            'error'=> 1
+        );
     }
 }

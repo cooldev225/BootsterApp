@@ -45,7 +45,7 @@ class CommonController extends Controller
         $create_at=date('Y-m-d H:i:s');
         $os=$request->input('os');
         $userId=$request->input('userId');
-        //verify_purchase(data)
+        self::verify_purchase($request);
         $user = Customer::find($userId);
         if($user==null)exit('user not found!');
         if($os != 'iOS'){
@@ -84,6 +84,11 @@ class CommonController extends Controller
         $trans->save();
         return UserController::ok(array('orderId'=>$orderId, 'stars'=> $stars));
     }
+    public static function verify_purchase(Request $request){
+        $package_name=$request->input('packageName');
+        $product_id=$request->input('productId');
+        $purchase_token=$request->input('purchaseToken');
+    }
     public function config(Request $request){
         header("Content-type: application/json");
         $configs = Ads::select()->get();
@@ -93,10 +98,42 @@ class CommonController extends Controller
         return UserController::ok($data);
     }
     public function rewardVideo(Request $request){
-        
+        $userId=$request->input('userId');
+        $user = Customer::find($user);
+        if($user==null)return UserController::err('something wrong!');
+        $user_stars = $user->stars;
+        $user_stars += 2;
+        $user->updated_at=date('Y-m-d H:i:s');
+        $user->stars = $user_stars;
+        $user->save();
+        return UserController::ok($user);
     }
     public function rewardTiktok(Request $request){
-        
+        $userId=$request->input('userId');
+        $user = Customer::find($userId);//'hasFollowTiktok': {'$exists': False}})
+        if($user==null)return UserController::err('something wrong!');
+        else if($user->hasFollowTiktok)return UserController::err('You have already follow us');
+        $user_stars = $user->stars;
+        $user_stars += 3;
+        $user->stars = $user_stars;
+        $user->hasFollowTiktok = true;
+        $user->updated_at=date('Y-m-d H:i:s');
+        $user->save();        
+        return UserController::ok($user);
+    }
+    public function reportApp(Request $request){
+        $userId=$request->input('userId');
+        $reason=$request->input('reason');
+        $user = Customer::find($userId);
+        if($user==null)return UserController::err('You have already follow us');
+        return UserController::ok(array('success'=>1));
+    }
+    public function reportUser(Request $request){
+        $userId=$request->input('userId');
+        $reason=$request->input('reason');
+        $user = Customer::find($userId);
+        if($user==null)return UserController::err('You have already follow us');
+        return UserController::ok(array('success'=>1));
     }
     public function feeds(Request $request){
         header("Content-type: application/json");

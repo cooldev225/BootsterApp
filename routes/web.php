@@ -58,8 +58,8 @@ Route::group(['middleware' => ['login']], function () {
 
 Route::post('/v1/api/config', 'API\\CommonController@config');//----------------------------
 Route::post('/v1/api/getBoostPackages', 'API\\CommonController@getBoostPackages');//--------
-Route::post('/v1/api/reward/video', 'API\\CommonController@rewardVideo');
-Route::post('/v1/api/reward/tiktok', 'API\\CommonController@rewardTiktok');
+Route::post('/v1/api/reward/video', 'API\\CommonController@rewardVideo');//
+Route::post('/v1/api/reward/tiktok', 'API\\CommonController@rewardTiktok');//
 Route::post('/v1/api/user/purchaseStar', 'API\\CommonController@purchaseStar');//-----------
 Route::post('/v1/api/user/login', 'API\\UserController@login');
 Route::get('/v1/api/user/login', 'API\\UserController@login');//---------------------------
@@ -69,3 +69,5 @@ Route::post('/v1/api/feeds', 'API\\CommonController@feeds');//------------------
 Route::post('/v1/api/feeds/follow', 'API\\CommonController@follow');//----------------------
 Route::post('/v1/api/feed/getAllBoost', 'API\\CommonController@getAllBoost');//-------------
 Route::post('/v1/api/feed/boost', 'API\\CommonController@boost');//-------------------------
+Route::post('/v1/api/report/app', 'API\\CommonController@reportApp');
+Route::post('/v1/api/report/user', 'API\\CommonController@reportUser');

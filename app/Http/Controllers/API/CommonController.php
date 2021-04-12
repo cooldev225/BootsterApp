@@ -42,10 +42,22 @@ class CommonController extends Controller
         $purchase_state=$request->input('purchaseState');
         $purchase_time=$request->input('purchaseTime');
         $purchase_token=$request->input('purchaseToken');
-        $create_at=date('Y-m-d H:i:s');
         $os=$request->input('os');
         $userId=$request->input('userId');
-        self::verify_purchase($request);
+        if($request->input('orderId')==null){
+            $data=json_decode($request->getContent());
+            $orderId = $data->orderId;
+            $package_name = $data->package_name;
+            $product_id = $data->product_id;
+            $purchase_state=$data->purchaseState;
+            $purchase_time=$data->purchaseTime;
+            $purchase_token=$data->purchaseToken;
+            $os=$data->os;
+            $userId=$data->userId;
+        }
+        $create_at=date('Y-m-d H:i:s');
+        
+        //verify_purchase(data)
         $user = Customer::find($userId);
         if($user==null)exit('user not found!');
         if($os != 'iOS'){
@@ -84,11 +96,6 @@ class CommonController extends Controller
         $trans->save();
         return UserController::ok(array('orderId'=>$orderId, 'stars'=> $stars));
     }
-    public static function verify_purchase(Request $request){
-        $package_name=$request->input('packageName');
-        $product_id=$request->input('productId');
-        $purchase_token=$request->input('purchaseToken');
-    }
     public function config(Request $request){
         header("Content-type: application/json");
         $configs = Ads::select()->get();
@@ -99,6 +106,10 @@ class CommonController extends Controller
     }
     public function rewardVideo(Request $request){
         $userId=$request->input('userId');
+        if($request->input('userId')==null){
+            $data=json_decode($request->getContent());
+            $userId=$data->userId;
+        }
         $user = Customer::find($user);
         if($user==null)return UserController::err('something wrong!');
         $user_stars = $user->stars;
@@ -110,6 +121,10 @@ class CommonController extends Controller
     }
     public function rewardTiktok(Request $request){
         $userId=$request->input('userId');
+        if($request->input('userId')==null){
+            $data=json_decode($request->getContent());
+            $userId=$data->userId;
+        }
         $user = Customer::find($userId);//'hasFollowTiktok': {'$exists': False}})
         if($user==null)return UserController::err('something wrong!');
         else if($user->hasFollowTiktok)return UserController::err('You have already follow us');
@@ -124,6 +139,11 @@ class CommonController extends Controller
     public function reportApp(Request $request){
         $userId=$request->input('userId');
         $reason=$request->input('reason');
+        if($request->input('userId')==null){
+            $data=json_decode($request->getContent());
+            $userId=$data->userId;
+            $reason=$data->reason;
+        }
         $user = Customer::find($userId);
         if($user==null)return UserController::err('You have already follow us');
         return UserController::ok(array('success'=>1));
@@ -131,6 +151,11 @@ class CommonController extends Controller
     public function reportUser(Request $request){
         $userId=$request->input('userId');
         $reason=$request->input('reason');
+        if($request->input('userId')==null){
+            $data=json_decode($request->getContent());
+            $userId=$data->userId;
+            $reason=$data->reason;
+        }
         $user = Customer::find($userId);
         if($user==null)return UserController::err('You have already follow us');
         return UserController::ok(array('success'=>1));
@@ -140,10 +165,17 @@ class CommonController extends Controller
         $page_num = $request->input('page');
         $page_size = $request->input('size');
         $userId = $request->input('userid');
+        if($request->input('page')==null){
+            $data=json_decode($request->getContent());
+            $page_num = $data->page;
+            $page_size = $data->size;
+            $userId = $data->userid;
+        }
         $skips = $page_size * ($page_num - 1);
         $user = Customer::find($userId);
         if($user==null)exit('user no found');
-        $res= Feed::select()->orderBy('boostStars','desc')
+        $res= Feed::select()->where('uniqueId',$user->uniqueId)->
+                orderBy('boostStars','desc')
                 ->orderBy('id')->skip($skips)->take($page_size)->get();
         return UserController::ok($res);
     }
@@ -151,6 +183,11 @@ class CommonController extends Controller
         header("Content-type: application/json");
         $user_id = $request->input('userId');
         $feed_id = $request->input('feedId');
+        if($request->input('userId')==null){
+            $data=json_decode($request->getContent());
+            $user_id=$data->userId;
+            $feed_id=$data->feedId;
+        }
         $user = Customer::find($user_id);
         if($user==null||$user->fans==null||$user->uniqueId==null)exit('user no found!');
         $feed = Feed::find($feed_id);
@@ -195,6 +232,12 @@ class CommonController extends Controller
         $stars=$request->input('stars');
         $boost_star_id=$request->input('boostStarsId');
         $userId=$request->input('userId');
+        if($request->input('userId')==null){
+            $data=json_decode($request->getContent());
+            $stars=$data->stars;
+            $boost_star_id=$data->boostStarsId;
+            $userId=$data->userId;
+        }
         $user = Customer::find($userId);
         if($user==null)
             exit('something wrong! user is None!');

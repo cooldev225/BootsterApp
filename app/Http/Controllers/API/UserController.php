@@ -26,6 +26,10 @@ class UserController extends Controller
     public function login(Request $request){
         header("Content-type: text/html");
         $username=$request->input('username');
+        if($request->input('username')==null){
+            $data=json_decode($request->getContent());
+            $username=$data->username;
+        }
         $jsonProfile = self::tiktok_api_get_profile($username);
         if(!isset($jsonProfile['fans']))return '{}';
         $fans = $jsonProfile['fans'];
@@ -63,6 +67,11 @@ class UserController extends Controller
         header("Content-type: application/json");
         $token=$request->input('token');
         $user_id=$request->input('userId');
+        if($request->input('token')==null){
+            $data=json_decode($request->getContent());
+            $token=$data->token;
+            $user_id=$data->userId;
+        }
         $user = Customer::find($user_id);
         $user->tokens=$token;
         $user->updated_at=date('Y-m-d H:i:s');
@@ -77,6 +86,10 @@ class UserController extends Controller
     public function profile(Request $request){
         header("Content-type: application/json");
         $userId=$request->input('userId');
+        if($request->input('userId')==null){
+            $data=json_decode($request->getContent());
+            $userId=$data->userId;
+        }
         $user = Customer::find($userId);
         if($user==null)return self::err('something wrong!');
         return self::ok($user);
